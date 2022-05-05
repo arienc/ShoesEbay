@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Shoes Ebay</title>
+<title>Login CR</title>
+	
 </head>
 <body>
-<form action="createLogin.jsp" method="POST">
-       Enter an email: <input type="text" name="email"/> <br/>
-       Enter a password: <input type="password" name="Password"/> <br/>
+<form action="loginCheckCR.jsp" method="POST">
+       Username: <input type="text" name="emailCR"/> <br/>
+       Password: <input type="password" name="passwordCR"/> <br/>
        <input type="submit" value="Submit"/>
      </form>
 </body>

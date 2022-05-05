@@ -17,7 +17,8 @@
 	<hr/>
 	<% if (session.getAttribute("currentUser") == null){
 			out.println("<a href =\"createAccount.jsp\">Create Account</a><br></br>");
-			out.println("<a href = \"Login.jsp\">Login</a>");
+			out.println("<a href = \"Login.jsp\">Login as User/Admin</a><br></br>");
+			out.println("<a href = \"LoginCR.jsp\">Login as Customer Rep</a>");
 		}
 		else {
 			out.println("<a href = \"LogoutServlet\">Logout</a>");

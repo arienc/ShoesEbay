@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
@@ -11,28 +13,33 @@
 <body>
 <%@ page import ="java.sql.*" %>
 <%
-	String email = request.getParameter("email");   
-	String pass = request.getParameter("Password");
+	String answer = request.getParameter("answer");   
+	String question = request.getParameter("question");
 	
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
-    ResultSet rs;
-    rs = stmt.executeQuery("select * from users where email='" + email + "'");
-    if (rs.next()) {
-    	out.println("email exists, please try another <a href='createAccount.jsp'>try again</a>");
-    } else {
-    	int x = stmt.executeUpdate("insert into users values('" +email+ "', '" +pass+ "')");
-    	session.setAttribute("email", email); 
-    
-    	%>
-    	Welcome <%=session.getAttribute("email") %>  
-    	<a href="Homepage.jsp">Continue</a>
-    	<a href="Logout.jsp">Log out</a>
-    	<%
-    }
+	 ResultSet rs;
+	    rs = stmt.executeQuery("select * from QA where question='" + question + "'");
+	    
+	    if (rs.next()) 
+	    {
+	    	session.setAttribute("answer", answer);
+	    	int x = stmt.executeUpdate("update QA set answer= '" +answer+ "'" + 
+	    	"where question='" + question + "'");
+	  
+	    	//int x = stmt.executeUpdate("update into QA values('" +answer+ "'");
+	  
+
+	    }
+ 	%>
+ 	Your Answer: <%=session.getAttribute("answer")  
 %>
 
+
+
+    	
 </body>
+
 </html>

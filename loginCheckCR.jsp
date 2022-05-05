@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Shoes Ebay</title>
+<title>login check cr</title>
 </head>
 <body>
 	<%@ page import ="java.sql.*" %>
 <%
-    String email = request.getParameter("email");   
-    String pass = request.getParameter("password");
+    String emailCR = request.getParameter("emailCR");   
+    String passwordCR = request.getParameter("passwordCR");
     
     
     ApplicationDB db = new ApplicationDB();	
@@ -20,23 +20,16 @@
 	Statement stmt = con.createStatement();
 	
     ResultSet rs1;
-    rs1 = stmt.executeQuery("select * from users where email='" + email + "'");
-    
+    rs1 = stmt.executeQuery("select * from CR where emailCR='" + emailCR + "'");
     if (rs1.next()){
     	 ResultSet rs2;
-    	    rs2 = stmt.executeQuery("select * from users where email='" + email + "' and password='" + pass + "'");
+    	    rs2 = stmt.executeQuery("select * from CR where emailCR='" + emailCR + "' and passwordCR='" + passwordCR + "'");
     	    if (rs2.next()) {
-    	    	session.setAttribute("email", email); 
-    	    	if(email.equals("admin"))
-    	    	{
-    	    		 response.sendRedirect("adminHome.jsp");
-    	    	}
+    	    	session.setAttribute("emailCR", emailCR); 
+    
     	    	%>
-    	    	Welcome <%=session.getAttribute("email") %>  
-    	    	<br>
-    	    	<a href="Homepage.jsp">Continue</a>
-    	    	<br>
-    	    	<a href="Logout.jsp">Log out</a>
+    	    	Welcome <%=session.getAttribute("emailCR") %> 
+    	   <% 	response.sendRedirect("CRHome.jsp"); %>
     	    	<%
     	    } else {
     	        out.println("Invalid password <a href='Login.jsp'>Try again</a>");
@@ -45,9 +38,9 @@
     
     else
    		{
-    	response.sendRedirect("loginCheckCR.jsp");	
+    	out.println("Username doesn't exist <a href= 'createAccount.jsp'>Create An Account</a>");
         }
-    	//out.println("Username doesn't exist <a href= 'createAccount.jsp'>Create An Account</a>");
+    	
    
 %>
 

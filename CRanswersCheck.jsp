@@ -6,31 +6,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Shoes Ebay</title>
+<title>Q & A</title>
 </head>
 <body>
 <%@ page import ="java.sql.*" %>
 <%
-	String email = request.getParameter("email");   
-	String pass = request.getParameter("Password");
-	
+
+
+String question = request.getParameter("question");  
+String answer = request.getParameter("answer");  
+
+
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
     ResultSet rs;
-    rs = stmt.executeQuery("select * from users where email='" + email + "'");
-    if (rs.next()) {
-    	out.println("email exists, please try another <a href='createAccount.jsp'>try again</a>");
-    } else {
-    	int x = stmt.executeUpdate("insert into users values('" +email+ "', '" +pass+ "')");
-    	session.setAttribute("email", email); 
-    
-    	%>
-    	Welcome <%=session.getAttribute("email") %>  
-    	<a href="Homepage.jsp">Continue</a>
-    	<a href="Logout.jsp">Log out</a>
-    	<%
+    rs = stmt.executeQuery("select * from QA where question='" + question + "'");
+    if (rs.next()) 
+    {
+    	response.sendRedirect("CRanswers.jsp"); //NOT WORKING RN
+
+    } else 
+    {
+    	//out.println("Question does not exist");
+    	response.sendRedirect("CRanswers.jsp");
     }
 %>
 
