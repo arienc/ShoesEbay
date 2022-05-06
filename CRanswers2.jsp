@@ -8,35 +8,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Shoes Ebay</title>
+<title>CR answer 2</title>
 </head>
 <body>
 <%@ page import ="java.sql.*" %>
 <%
-	String answer = request.getParameter("answer");   
-	String question = request.getParameter("question");
+	String answer = request.getParameter("ANSWER");   
+	String user = (String) session.getAttribute("emailQA");
 	
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
 	 ResultSet rs;
-	    rs = stmt.executeQuery("select * from QA where question='" + question + "'");
+	    rs = stmt.executeQuery("select * from QA where emailQA='" + user + "'");
 	    
 	    if (rs.next()) 
 	    {
+	    	int x = stmt.executeUpdate("insert QA set answer= '" +answer+ "'" + 
+	    	"where emailQA='" + user + "'");
 	    	session.setAttribute("answer", answer);
-	    	int x = stmt.executeUpdate("update QA set answer= '" +answer+ "'" + 
-	    	"where question='" + question + "'");
 	  
-	    	//int x = stmt.executeUpdate("update into QA values('" +answer+ "'");
-	  
+	    	// int x = stmt.executeUpdate("update into QA values('" +answer+ "'");
+	    	%>
+	    	Your Answer: <%=session.getAttribute("answer") %>  
+	   <a href="showQs2.jsp">Return to Questions</a>
+
+	    	<%
 
 	    }
- 	%>
- 	Your Answer: <%=session.getAttribute("answer")  
-%>
+	    else
+	    {
+	    	out.println("why");
+	    }
 
+%>
 
 
     	

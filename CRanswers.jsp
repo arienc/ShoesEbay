@@ -11,11 +11,11 @@
 Question exists, answer below:
     
     <form method="post" action="CRanswers2.jsp">
-		  <input type="text" name="text" value="answer"/>
+		  <input type="text" name="ANSWER"/>
     	<br>
 		  <input type="submit" value="submit" />
 		</form>
-		
+	
 
     
 </body>

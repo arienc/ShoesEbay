@@ -6,30 +6,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Q & A</title>
+<title>Create CR Login</title>
 </head>
 <body>
 <%@ page import ="java.sql.*" %>
 <%
-
-
-String emailQA = request.getParameter("emailQA1");   
-
+	String emailCR = request.getParameter("emailCR");   
+	String passwordCR = request.getParameter("PasswordCR");
+	
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
     ResultSet rs;
-    rs = stmt.executeQuery("select * from QA where emailQA='" + emailQA + "'");
+    rs = stmt.executeQuery("select * from CR where emailCR='" + emailCR + "'");
     if (rs.next()) 
     {
-    	response.sendRedirect("CRanswers.jsp");
-
-    } 
-    else 
+    	out.println("email exists, please try another <a href='adminHome.jsp'>try again</a>");
+    } else 
     {
-    	out.println("This user did not ask a question");
-    	//response.sendRedirect("CRanswers.jsp");
+    	int x = stmt.executeUpdate("insert into CR values('" +emailCR+ "', '" +passwordCR+ "')");
+    	session.setAttribute("emailCR", emailCR); 
+    
+    	%>
+    	Account Created :) <%=session.getAttribute("emailCR") %>  
+    	<a href="adminHome.jsp">Return to Home</a>
+    	<a href="Logout.jsp">Log out</a>
+    	<%
     }
 %>
 

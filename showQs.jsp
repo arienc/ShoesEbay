@@ -29,14 +29,16 @@
 			
 			//Make an HTML table to show the results in:
 			out.print("<table>");
-
 			//make a row
 			out.print("<tr>");
 			//make a column
 			out.print("<td>");
 			//print out column header
-			out.print("Questions");
+			out.print("Users");
 			out.print("</td>");
+			//make a column
+			out.print("<td>");
+			out.print("Questions");
 			//make a column
 			out.print("<td>");
 			out.print("Answers");
@@ -46,6 +48,10 @@
 				//make a row
 				out.print("<tr>");
 				//make a column
+				out.print("<td>");
+				//Print out current bar or beer name:
+				out.print(result.getString("emailQA"));
+				out.print("</td>");
 				out.print("<td>");
 				//Print out current bar or beer name:
 				out.print(result.getString("question"));

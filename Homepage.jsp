@@ -9,7 +9,7 @@
 <title>Homepage</title>
 </head>
 <body>
-<br>
+<%@ include file="NavigationBar.jsp" %>
 	
   	<p>
       Welcome to Shoes Ebay! What would you like to do today?

@@ -1,100 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+									<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
-}
-
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
-
-#myInput:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-</style>
-</head>
-<body>
-
-<p> Select what shoes you are searching for. </p>
-
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Shoes</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#Lace">Lace</a>
-    <a href="#Laceless">Laceless</a>
-  </div>
-</div>
-
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
-</script>
-
-</body>
-</html>
-
+   <head>
+      <title>Search Bid</title>
+   </head>
+   <body>
+   		<h3>Search for a Bid</h3>
+   		<form action="SearchedItems.jsp" method="POST">
+	   	    <label for="SerialNumber">Serial Number</label>
+			<input type="text" name="SerialNumber" id="SerialNumber" placeholder="Enter serial number" >
+            <br>
+            
+            <label for="Type">Type</label>
+			<select name="Type" id="Type">
+				<option value="" disabled selected hidden="true">Select Type</option>
+				<option value="Lace">Lace</option>
+				<option value="LaceLess">Laceless</option>
+			</select>
+            <br>
+            
+			<label for="size">Size</label> 
+			<input type="number" name="Size" id="Size" placeholder="Shoe Size (U.S.)" > 
+			<br>
+            
+			<label for="price">Price Less Than</label> 
+			<input type="number" name="price" id="price" placeholder="Enter Price in $" >
+            <br>
+            
+			<label for="endDate">End Date Before</label> 
+			<input type="date" name="endDate" id="endDate" placeholder="YYYYMMDD" >  
+ 			<br>
+            
+			<label for="brand">Brand</label>
+			<select name="brand" id="brand">
+				<option value="" disabled selected hidden="true">Select brand</option>
+				<option value="Nike">Nike</option>
+				<option value="Skechers">Skechers</option>
+				<option value="Converse">Converse</option>
+				<option value="Puma">Puma</option>
+				<option value="Adidas">Adidas</option>
+				<option value="Reebok">Reebok</option>
+				<option value="SO">SO</option>
+				<option value="Other">Other</option>
+			</select> 
+			
+			<br>
+			<label for="color">Color</label>
+			<input type="text" name="color" id="color" placeholder="Enter color">
+			
+			<input type="submit" value="Submit">
+			<br>
+            
+			<select name="sortBy" id="sortBy">
+			<option value="auctionID" disabled selected hidden="true">Sort By</option>
+			<option value="auctionID">Auction ID</option>
+			<option value="CurrentBid DESC">Current Bid (Ascending)</option>
+			<option value="CurrentBid ASC">Current Bid (Descending </option>
+			<option value="brand">Brand</option>
+			<option value="description">Description</option>
+			<option value="EndTime ASC">End Date (Soonest to Latest)</option>
+			<option value="EndTime DESC">End Date (Latest to Soonest)</option>
+			</select> 
+			
+			
+		</form>
+		
+		<hr>
+		
+   
+   </body>
+   
+   </html>

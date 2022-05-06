@@ -11,20 +11,25 @@
 <body>
 <%@ page import ="java.sql.*" %>
 <%
+
 	String question = request.getParameter("question");   
+	String user = (String) session.getAttribute("email");
 	
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
+	ResultSet rs0 = stmt.executeQuery("select * from users where email='" + user + "'");
     ResultSet rs;
     rs = stmt.executeQuery("select * from QA where question='" + question + "'");
     if (rs.next()) 
     {
+    	
     	out.println("Question exists, please try another <a href='Homepage.jsp'>try again</a>");
-    } else 
+    } 
+    else 
     {
-    	int x = stmt.executeUpdate("insert into QA values('" +question+ "', 'Not Yet Answered')");
+    	int x = stmt.executeUpdate("insert into QA values('" +user+ "','" +question+ "', 'Not Yet Answered')");
     	session.setAttribute("question", question); 
     
     	%>
@@ -32,7 +37,9 @@
     	<a href="showQs.jsp">Continue</a>
 
     	<%
-    }
+    	    }
+  
+
 %>
 
 </body>
