@@ -17,7 +17,6 @@
 			//Get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();		
-
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Get the selected radio button from the index.jsp
@@ -42,7 +41,6 @@
 			//make a column
 			out.print("<td>");
 			out.print("Answers");
-
 			//parse out the results
 			while (result.next()) {
 				//make a row
@@ -58,14 +56,11 @@
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current bar/beer additional info: Manf or Address
-
 				out.print(result.getString("answer"));
 				out.print("</td>");
 				out.print("</tr>");
-
 			}
 			out.print("</table>");
-
 			//close the connection.
 			db.closeConnection(con);
 		} catch (Exception e) {

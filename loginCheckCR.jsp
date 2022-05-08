@@ -29,7 +29,7 @@
     
     	    	%>
     	    	Welcome <%=session.getAttribute("emailCR") %> 
-    	   <% 	response.sendRedirect("CRHome.jsp"); %>
+    	   <% 	response.sendRedirect("HomeCr.jsp"); %>
     	    	<%
     	    } else {
     	        out.println("Invalid password <a href='Login.jsp'>Try again</a>");

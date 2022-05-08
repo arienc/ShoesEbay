@@ -29,7 +29,7 @@
     	    	session.setAttribute("email", email); 
     	    	if(email.equals("admin"))
     	    	{
-    	    		 response.sendRedirect("adminHome.jsp");
+    	    		 response.sendRedirect("HomeAdmin.jsp");
     	    	}
     	    	%>
     	    	Welcome <%=session.getAttribute("email") %>  

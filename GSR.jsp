@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,14 +9,25 @@
 </head>
 <body>
 <strong>Generate Sales Report for:</strong><br><br>
-<button type="submit">Total earnings</button> <br><br>
-Earnings per:<br><br>
-<button type="submit">Item</button> <br><br>
-<button type="submit">Item Type</button> <br><br>
-<button type="submit">End User</button> <br><br>
-<button type="submit">Best Selling Items</button> <br><br>
-<button type="submit">Best Buyers</button>
+<li><a href = "TotalEarnings.jsp">Total Shoe Earnings</a></li><br>
+<li><a href = "EarningsPerItem.jsp">Earnings per Item</a></li><br>
+<li><a href = "EarningsPerItemType.jsp">Earnings per Item Type</a></li><br>
+<li><a href = "BestSellingItem.jsp">Best Selling Items</a></li><br>
+<li><a href = "BestBuyers.jsp">Best Buyers</a></li><br>
 
-
+<div id="content">
+		<div id="nav">
+	
+					<a href="HomeAdmin.jsp">Home</a>
+				<a href="Logout.jsp">Logout</a>
+				<%
+					
+				%>
+			
+				<%
+					
+				%>
+		
+		</div>
 </body>
 </html>

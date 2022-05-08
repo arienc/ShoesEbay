@@ -30,7 +30,7 @@
     
     	%>
     	Account Created :) <%=session.getAttribute("emailCR") %>  
-    	<a href="adminHome.jsp">Return to Home</a>
+    	<a href="HomeAdmin.jsp">Return to Home</a>
     	<a href="Logout.jsp">Log out</a>
     	<%
     }

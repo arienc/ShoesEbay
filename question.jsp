@@ -9,38 +9,12 @@
 <title>Q & A</title>
 </head>
 <body>
-<%@ page import ="java.sql.*" %>
-<%
 
-	String question = request.getParameter("question");   
-	String user = (String) session.getAttribute("email");
-	
-	ApplicationDB db = new ApplicationDB();	
-	Connection con = db.getConnection();	
-	Statement stmt = con.createStatement();
-    
-	ResultSet rs0 = stmt.executeQuery("select * from users where email='" + user + "'");
-    ResultSet rs;
-    rs = stmt.executeQuery("select * from QA where question='" + question + "'");
-    if (rs.next()) 
-    {
-    	
-    	out.println("Question exists, please try another <a href='Homepage.jsp'>try again</a>");
-    } 
-    else 
-    {
-    	int x = stmt.executeUpdate("insert into QA values('" +user+ "','" +question+ "', 'Not Yet Answered')");
-    	session.setAttribute("question", question); 
-    
-    	%>
-    	Your Question: <%=session.getAttribute("question") %>  
-    	<a href="showQs.jsp">Continue</a>
+ <form  action = "question2.jsp "method="POST">
+	  	 Type in your question: <input type="text" name="question"/> <br/>
+       <input type="submit" value="Submit"/>
+  </form>
 
-    	<%
-    	    }
-  
-
-%>
 
 </body>
 </html>

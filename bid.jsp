@@ -7,9 +7,9 @@
    <head>
       <title>Search Bid</title>
    </head>
-   <body>
+   <body><%@include file="NavigationBar.jsp"%>
    		<h3>Search for a Bid</h3>
-   		<form action="SearchedItems.jsp" method="POST">
+   		<form action="searchedBid.jsp" method="POST">
 	   	    <label for="SerialNumber">Serial Number</label>
 			<input type="text" name="SerialNumber" id="SerialNumber" placeholder="Enter serial number" >
             <br>

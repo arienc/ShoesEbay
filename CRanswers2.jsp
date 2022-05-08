@@ -15,34 +15,37 @@
 <%
 	String answer = request.getParameter("ANSWER");   
 	String user = (String) session.getAttribute("emailQA");
+	String CRuser = (String) session.getAttribute("emailCR");
 	
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();	
 	Statement stmt = con.createStatement();
     
-	 ResultSet rs;
-	    rs = stmt.executeQuery("select * from QA where emailQA='" + user + "'");
-	    
-	    if (rs.next()) 
-	    {
-	    	int x = stmt.executeUpdate("insert QA set answer= '" +answer+ "'" + 
-	    	"where emailQA='" + user + "'");
-	    	session.setAttribute("answer", answer);
-	  
-	    	// int x = stmt.executeUpdate("update into QA values('" +answer+ "'");
-	    	%>
-	    	Your Answer: <%=session.getAttribute("answer") %>  
-	   <a href="showQs2.jsp">Return to Questions</a>
-
-	    	<%
-
-	    }
-	    else
-	    {
-	    	out.println("why");
-	    }
-
-%>
+	 ResultSet rs0 = stmt.executeQuery("select * from CR where emailCR='" + session.getAttribute("user") + "'");
+     if(rs0.next()){
+    	// String x = request.getParameter("questionID");
+    //	int id = Integer.parseInt(x);
+    	
+    	ResultSet rs1 = stmt.executeQuery("select * from QA where emailQA ="+user);
+    	rs1.next();
+    	out.print(rs1.getString(1)+" asked ");
+    	out.print(rs1.getString(2));
+    	%>
+    	
+    	<form method="POST">
+        Answer Above Question <input type="text" name="answer"/> <br/>
+        <input type="submit" value="Submit"/>
+      </form>
+     	<%
+     	String query = "update questions set answer = '" + user+ " answered : " + request.getParameter("answer")+ "'where emailQA ="+user;
+     	%>  
+     	<%PreparedStatement stmt1 = con.prepareStatement(query);
+     	stmt1.executeUpdate();
+     	%>
+    <%}
+	else{
+    	out.println("Cannot answer questions if you are not a Customer Representative. <a href= 'ViewQuestions.jsp'>Go back to questions page</a>");
+	}%> 
 
 
     	
